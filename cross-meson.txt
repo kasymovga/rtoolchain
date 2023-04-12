@@ -1,0 +1,12 @@
+[binaries]
+c = '%%TARGET%%-gcc'
+cpp = '%%TARGET%%-g++'
+ar = '%%TARGET%%-ar'
+strip = '%%TARGET%%-strip'
+pkgconfig = 'pkg-config'
+
+[host_machine]
+system = 'linux'
+cpu_family = '%%MESON_CPU_FAMILY%%'
+cpu = '%%MESON_CPU%%'
+endian = 'little'

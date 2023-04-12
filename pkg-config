@@ -1,0 +1,11 @@
+#!/bin/sh
+
+export PKG_CONFIG_LIBDIR="%%TARGETDIR%%/wayland-scanner/lib/pkgconfig:%%TARGETDIR%%/lib/pkgconfig:%%TARGETDIR%%/share/pkgconfig"
+if test -n "$PKG_CONFIG_PATH"
+then
+	PKG_CONFIG_PATH="$PKG_CONFIG_PATH:%%TARGETDIR%%/lib/pkgconfig"
+else
+	PKG_CONFIG_PATH="%%TARGETDIR%%/lib/pkgconfig"
+fi
+export PKG_CONFIG_PATH
+exec /usr/bin/pkg-config "$@"
