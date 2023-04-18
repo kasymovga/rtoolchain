@@ -8,4 +8,4 @@ else
 	PKG_CONFIG_PATH="%%TARGETDIR%%/lib/pkgconfig"
 fi
 export PKG_CONFIG_PATH
-exec /usr/bin/pkg-config "$@"
+exec %%PKGCONFIG%% "$@"

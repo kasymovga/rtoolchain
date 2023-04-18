@@ -940,8 +940,12 @@ $(PULSEAUDIO): $(PULSEAUDIO_DIRECTORY_STAMP) $(PKG_CONFIG) $(GLIB) $(LIBSNDFILE)
 	touch $@
 
 $(PKG_CONFIG):
-	sed 's|%%TARGETDIR%%|$(TOOLCHAIN_DIRECTORY)/$(TOOLCHAIN_TARGET)|g' pkg-config > $(TOOLCHAIN_DIRECTORY)/bin/pkg-config
-	chmod 755 $(TOOLCHAIN_DIRECTORY)/bin/pkg-config
+	sed 's|%%TARGETDIR%%|$(TOOLCHAIN_DIRECTORY)/$(TOOLCHAIN_TARGET)|g' pkg-config > $(TOOLCHAIN_DIRECTORY)/bin/pkg-config.tmp
+	which pkg-config
+	sed -i.bak "s|%%PKGCONFIG%%|`which pkg-config`|" $(TOOLCHAIN_DIRECTORY)/bin/pkg-config.tmp
+	rm $(TOOLCHAIN_DIRECTORY)/bin/pkg-config.tmp.bak
+	chmod 755 $(TOOLCHAIN_DIRECTORY)/bin/pkg-config.tmp
+	mv $(TOOLCHAIN_DIRECTORY)/bin/pkg-config.tmp $(TOOLCHAIN_DIRECTORY)/bin/pkg-config
 	touch $@
 
 $(MESON_CROSS_TXT):
