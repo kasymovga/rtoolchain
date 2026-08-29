@@ -76,8 +76,9 @@ endif
 LINUX_DIRECTORY_STAMP=$(LINUX_DIRECTORY)/stamp
 LINUX_HEADERS=$(TOOLCHAIN_DIRECTORY)/linux-headers
 
+#https://rockylinux.pkgs.org/8/rockylinux-baseos-aarch64/glibc-2.28-251.el8_10.2.aarch64.rpm.html
 ifeq ($(TARGET),linux-arm64)
-GLIBC_VERSION=2.28-225.el8
+GLIBC_VERSION=2.28-251.el8_10.2
 else
 GLIBC_VERSION=2.12-1.212.el6
 endif
@@ -346,7 +347,7 @@ PKG_CONFIG=$(TOOLCHAIN_DIRECTORY)/pkg-config
 
 $(GLIBC_RPM) $(GLIBC_DEVEL_RPM) $(GLIBC_STATIC_RPM) $(GLIBC_HEADERS_RPM) $(GLIBC_COMMON_RPM):
 ifeq ($(TARGET),linux-arm64)
-	sh download.sh https://rpmfind.net/linux/centos/8-stream/BaseOS/aarch64/os/Packages/$@ $@
+	sh download.sh https://dl.rockylinux.org/pub/rocky/8/Devel/aarch64/os/Packages/g/$@ $@
 else
 	sh download.sh https://vault.centos.org/6.10/os/$(RHEL_ARCH)/Packages/$@ $@
 endif
