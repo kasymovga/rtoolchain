@@ -914,7 +914,7 @@ $(MESA): $(MESA_DIRECTORY_STAMP) $(PKG_CONFIG) $(LIBDRM) $(LIBXFIXES) $(LIBXSHMF
 
 $(WAYLAND_SCANNER): $(WAYLAND_DIRECTORY_STAMP)
 	rm -rf $(WAYLAND_DIRECTORY)/build-scanner
-	cd $(WAYLAND_DIRECTORY) && meson setup build-scanner -Ddocumentation=false --prefix $(TOOLCHAIN_DIRECTORY)/$(TOOLCHAIN_TARGET)/wayland-scanner
+	cd $(WAYLAND_DIRECTORY) && meson setup build-scanner -Ddocumentation=false --prefix $(TOOLCHAIN_DIRECTORY)/$(TOOLCHAIN_TARGET)/wayland-scanner --libdir=$(TOOLCHAIN_DIRECTORY)/$(TOOLCHAIN_TARGET)/wayland-scanner/lib
 	cd $(WAYLAND_DIRECTORY)/build-scanner && ninja
 	cd $(WAYLAND_DIRECTORY)/build-scanner && ninja install
 	touch $@
