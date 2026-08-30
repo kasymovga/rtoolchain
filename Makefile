@@ -489,7 +489,7 @@ $(MPC_DIRECTORY_STAMP): $(MPC_TARBALL)
 
 $(GLIBC_DIRECTORY_STAMP): $(GLIBC_RPM) $(GLIBC_DEVEL_RPM) $(GLIBC_STATIC_RPM) $(GLIBC_HEADERS_RPM) $(GLIBC_COMMON_RPM)
 	mkdir -m 755 -p $(GLIBC_DIRECTORY)
-	cd $(GLIBC_DIRECTORY) && for RPM in $^; do sh rpm2cpio.sh ../$$RPM || exit 1; CPIO=$${RPM%.rpm}.cpio; cpio -imd < "$$CPIO" ; rm -f $$CPIO ; done
+	cd $(GLIBC_DIRECTORY) && for RPM in $^; do sh ../rpm2cpio.sh ../$$RPM || exit 1; CPIO=$${RPM%.rpm}.cpio; cpio -imd < "$$CPIO" ; rm -f $$CPIO ; done
 ifeq ($(LIB64),1)
 	for L in $(GLIBC_DIRECTORY)/usr/lib64/*; do LINK=$$(readlink "$$L"); case "$$LINK" in ../../lib64/*) LINK=$${LINK#../../lib64/}; ln -sf "$$LINK" "$$L";; esac; done
 else
