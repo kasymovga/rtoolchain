@@ -10,10 +10,16 @@ then
 	7za -y x "$1" || exit 1
 	exit 0
 fi
+if type p7zip > /dev/null
+then
+	p7zip -y x "$1" || exit 1
+	exit 0
+fi
 if type rpm2cpio > /dev/null
 then
 	CPIONAME=$(basename "$1" .rpm).cpio
 	rpm2cpio "$1" > ${CPIONAME} || exit 1
 	exit 0
 fi
+echo 7z, 7za, p7zip or rpm2cpio not found
 exit 1
