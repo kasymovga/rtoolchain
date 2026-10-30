@@ -463,7 +463,7 @@ $(LIBDRM_TARBALL):
 	sh download.sh $(LIBDRM_URL) $@
 
 $(LIBXML2_TARBALL):
-	sh download.sh $(LIBXML2_URL) $@ ]] sh download.sh $(LIBXML2_URL_2) $@
+	sh download.sh $(LIBXML2_URL) $@ || sh download.sh $(LIBXML2_URL_2) $@
 
 $(EXPAT_TARBALL):
 	sh download.sh $(EXPAT_URL) $@
