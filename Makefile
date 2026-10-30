@@ -296,6 +296,7 @@ GLIB_VERSION=2.76.1
 GLIB_DIRECTORY=glib-$(GLIB_VERSION)
 GLIB_TARBALL=$(GLIB_DIRECTORY).tar.xz
 GLIB_URL=https://download.gnome.org/sources/glib/2.76/$(GLIB_TARBALL)
+GLIB_URL_2=https://www.mirrorservice.org/sites/ftp.gnome.org/pub/GNOME/sources/glib/2.76/$(GLIB_TARBALL)
 GLIB_DIRECTORY_STAMP=$(GLIB_DIRECTORY)/stamp
 GLIB=$(TOOLCHAIN_DIRECTORY)/glib
 
@@ -310,6 +311,7 @@ LIBXML2_VERSION=2.10.4
 LIBXML2_DIRECTORY=libxml2-$(LIBXML2_VERSION)
 LIBXML2_TARBALL=$(LIBXML2_DIRECTORY).tar.xz
 LIBXML2_URL=https://download.gnome.org/sources/libxml2/2.10/$(LIBXML2_TARBALL)
+LIBXML2_URL_2=https://www.mirrorservice.org/sites/ftp.gnome.org/pub/GNOME/sources/libxml2/2.10/$(LIBXML2_TARBALL)
 LIBXML2_DIRECTORY_STAMP=$(LIBXML2_DIRECTORY)/stamp
 LIBXML2=$(TOOLCHAIN_DIRECTORY)/libxml2
 
@@ -455,13 +457,13 @@ $(ALSA_LIB_TARBALL):
 	sh download.sh $(ALSA_LIB_URL) $@
 
 $(GLIB_TARBALL):
-	sh download.sh $(GLIB_URL) $@
+	sh download.sh $(GLIB_URL) $@ || sh download.sh $(GLIB_URL_2) $@
 
 $(LIBDRM_TARBALL):
 	sh download.sh $(LIBDRM_URL) $@
 
 $(LIBXML2_TARBALL):
-	sh download.sh $(LIBXML2_URL) $@
+	sh download.sh $(LIBXML2_URL) $@ ]] sh download.sh $(LIBXML2_URL_2) $@
 
 $(EXPAT_TARBALL):
 	sh download.sh $(EXPAT_URL) $@
